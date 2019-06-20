@@ -1,0 +1,3 @@
+PKG_CPPFLAGS = -I ../../cppEDM/src/
+PKG_LIBS = -L ../../cppEDM/lib/ -lEDM
+

@@ -1,0 +1,487 @@
+
+* installing to library ‘/home/camcam/R/x86_64-pc-linux-gnu-library/3.6’
+* installing *source* package ‘rEDMNew’ ...
+** using staged installation
+** libs
+DataFrame.cpp: In function ‘DataFrame<double> DFToDataFrame(Rcpp::DataFrame)’:
+DataFrame.cpp:26:18: error: invalid use of incomplete type ‘struct SEXPREC’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp/r/headers.h:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:29,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/R/Rinternals.h:184:16: note: forward declaration of ‘struct SEXPREC’
+ typedef struct SEXPREC *SEXP;
+                ^~~~~~~
+DataFrame.cpp:26:7: error: no match for ‘operator<<’ (operand types are ‘std::ostream’ {aka ‘std::basic_ostream<char>’} and ‘SEXPREC’)
+   cout<<df[idx][0]<<endl;
+   ~~~~^~~~~~~~~~~~
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:108:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__ostream_type& (*)(std::basic_ostream<_CharT, _Traits>::__ostream_type&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(__ostream_type& (*__pf)(__ostream_type&))
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:108:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘std::basic_ostream<char>::__ostream_type& (*)(std::basic_ostream<char>::__ostream_type&)’ {aka ‘std::basic_ostream<char>& (*)(std::basic_ostream<char>&)’}
+/usr/include/c++/8.3.0/ostream:117:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__ios_type& (*)(std::basic_ostream<_CharT, _Traits>::__ios_type&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>; std::basic_ostream<_CharT, _Traits>::__ios_type = std::basic_ios<char>]’
+       operator<<(__ios_type& (*__pf)(__ios_type&))
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:117:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘std::basic_ostream<char>::__ios_type& (*)(std::basic_ostream<char>::__ios_type&)’ {aka ‘std::basic_ios<char>& (*)(std::basic_ios<char>&)’}
+/usr/include/c++/8.3.0/ostream:127:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(std::ios_base& (*)(std::ios_base&)) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(ios_base& (*__pf) (ios_base&))
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:127:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘std::ios_base& (*)(std::ios_base&)’
+/usr/include/c++/8.3.0/ostream:166:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(long __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:166:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘long int’
+/usr/include/c++/8.3.0/ostream:170:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(unsigned long __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:170:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘long unsigned int’
+/usr/include/c++/8.3.0/ostream:174:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(bool) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(bool __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:174:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘bool’
+In file included from /usr/include/c++/8.3.0/ostream:693,
+                 from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/ostream.tcc:91:5: note: candidate: ‘std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(short int) [with _CharT = char; _Traits = std::char_traits<char>]’
+     basic_ostream<_CharT, _Traits>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/ostream.tcc:91:5: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘short int’
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:181:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(short unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(unsigned short __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:181:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘short unsigned int’
+In file included from /usr/include/c++/8.3.0/ostream:693,
+                 from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/ostream.tcc:105:5: note: candidate: ‘std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(int) [with _CharT = char; _Traits = std::char_traits<char>]’
+     basic_ostream<_CharT, _Traits>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/ostream.tcc:105:5: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘int’
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:192:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(unsigned int __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:192:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘unsigned int’
+/usr/include/c++/8.3.0/ostream:201:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(long long __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:201:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘long long int’
+/usr/include/c++/8.3.0/ostream:205:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long long unsigned int) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(unsigned long long __n)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:205:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘long long unsigned int’
+/usr/include/c++/8.3.0/ostream:220:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(double) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(double __f)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:220:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘double’
+/usr/include/c++/8.3.0/ostream:224:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(float) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(float __f)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:224:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘float’
+/usr/include/c++/8.3.0/ostream:232:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(long double) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(long double __f)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:232:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘long double’
+/usr/include/c++/8.3.0/ostream:245:7: note: candidate: ‘std::basic_ostream<_CharT, _Traits>::__ostream_type& std::basic_ostream<_CharT, _Traits>::operator<<(const void*) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__ostream_type = std::basic_ostream<char>]’
+       operator<<(const void* __p)
+       ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:245:7: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘const void*’
+In file included from /usr/include/c++/8.3.0/ostream:693,
+                 from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/ostream.tcc:119:5: note: candidate: ‘std::basic_ostream<_CharT, _Traits>& std::basic_ostream<_CharT, _Traits>::operator<<(std::basic_ostream<_CharT, _Traits>::__streambuf_type*) [with _CharT = char; _Traits = std::char_traits<char>; std::basic_ostream<_CharT, _Traits>::__streambuf_type = std::basic_streambuf<char>]’
+     basic_ostream<_CharT, _Traits>::
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/ostream.tcc:119:5: note:   no known conversion for argument 1 from ‘SEXPREC’ to ‘std::basic_ostream<char>::__streambuf_type*’ {aka ‘std::basic_streambuf<char>*’}
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:136,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp/complex.h:76:23: note: candidate: ‘std::ostream& operator<<(std::ostream&, const Rcomplex&)’
+ inline std::ostream & operator<<(std::ostream &os, const Rcomplex& cplx) {
+                       ^~~~~~~~
+/home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp/complex.h:76:23: note:   no known conversion for argument 2 from ‘SEXPREC’ to ‘const Rcomplex&’
+In file included from /usr/include/c++/8.3.0/string:52,
+                 from /usr/include/c++/8.3.0/stdexcept:39,
+                 from /usr/include/c++/8.3.0/array:39,
+                 from /usr/include/c++/8.3.0/tuple:39,
+                 from /usr/include/c++/8.3.0/bits/hashtable_policy.h:34,
+                 from /usr/include/c++/8.3.0/bits/hashtable.h:35,
+                 from /usr/include/c++/8.3.0/unordered_map:46,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp/platform/compiler.h:153,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp/r/headers.h:59,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:29,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/basic_string.h:6323:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^~~~~~~~
+/usr/include/c++/8.3.0/bits/basic_string.h:6323:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/bits/ios_base.h:46,
+                 from /usr/include/c++/8.3.0/ios:42,
+                 from /usr/include/c++/8.3.0/ostream:38,
+                 from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/system_error:217:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::error_code&)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __e)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/system_error:217:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘const std::error_code&’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:497:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)’
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:497:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   deduced conflicting types for parameter ‘_CharT’ (‘char’ and ‘SEXPREC’)
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:502:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)’
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:502:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘char’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:508:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)’
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:508:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘char’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:514:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)’
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:514:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘signed char’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:519:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)’
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:519:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘unsigned char’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:539:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)’
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:539:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   mismatched types ‘const _CharT*’ and ‘SEXPREC’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/ostream:693,
+                 from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/ostream.tcc:321:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)’
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘const char*’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:556:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)’
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:556:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘const char*’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:569:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)’
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:569:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘const signed char*’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:574:5: note: candidate: ‘template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)’
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:574:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘const unsigned char*’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /usr/include/c++/8.3.0/iterator:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:49,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/ostream:682:5: note: candidate: ‘template<class _Ostream, class _Tp> typename std::enable_if<std::__and_<std::__not_<std::is_lvalue_reference<_Tp> >, std::__is_convertible_to_basic_ostream<_Ostream>, std::__is_insertable<typename std::__is_convertible_to_basic_ostream<_Tp>::__ostream_type, const _Tp&, void> >::value, typename std::__is_convertible_to_basic_ostream<_Tp>::__ostream_type>::type std::operator<<(_Ostream&&, const _Tp&)’
+     operator<<(_Ostream&& __os, const _Tp& __x)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/ostream:682:5: note:   template argument deduction/substitution failed:
+/usr/include/c++/8.3.0/ostream: In substitution of ‘template<class _Ostream, class _Tp> typename std::enable_if<std::__and_<std::__not_<std::is_lvalue_reference<_Tp> >, std::__is_convertible_to_basic_ostream<_Ostream>, std::__is_insertable<typename std::__is_convertible_to_basic_ostream<_Tp>::__ostream_type, const _Tp&, void> >::value, typename std::__is_convertible_to_basic_ostream<_Tp>::__ostream_type>::type std::operator<<(_Ostream&&, const _Tp&) [with _Ostream = std::basic_ostream<char>&; _Tp = SEXPREC]’:
+DataFrame.cpp:26:18:   required from here
+/usr/include/c++/8.3.0/ostream:682:5: error: no type named ‘type’ in ‘struct std::enable_if<false, std::basic_ostream<char>&>’
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:79:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Resetiosflags)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Resetiosflags __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:79:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘std::_Resetiosflags’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:109:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Setiosflags)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setiosflags __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:109:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘std::_Setiosflags’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:143:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Setbase)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setbase __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:143:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘std::_Setbase’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:178:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Setfill<_CharT>)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setfill<_CharT> __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:178:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘std::_Setfill<_CharT>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:208:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Setprecision)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setprecision __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:208:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘std::_Setprecision’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:238:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Setw)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Setw __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:238:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   cannot convert ‘* Rcpp::Vector<RTYPE, StoragePolicy>::operator[](R_xlen_t) [with int RTYPE = 19; StoragePolicy = Rcpp::PreserveStorage; Rcpp::Vector<RTYPE, StoragePolicy>::Proxy = Rcpp::internal::generic_proxy<19>; R_xlen_t = long int](((R_xlen_t)idx)).Rcpp::internal::generic_proxy<19>::operator SEXP()’ (type ‘SEXPREC’) to type ‘std::_Setw’
+   cout<<df[idx][0]<<endl;
+         ~~~~~~~~~^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:311:5: note: candidate: ‘template<class _CharT, class _Traits, class _MoneyT> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Put_money<_MoneyT>)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_money<_MoneyT> __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:311:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘std::_Put_money<_MoneyT>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:52,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/iomanip:363:5: note: candidate: ‘template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, std::_Put_time<_CharT>)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, _Put_time<_CharT> __f)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/iomanip:363:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘std::_Put_time<_CharT>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/RcppCommon.h:64,
+                 from /home/camcam/R/x86_64-pc-linux-gnu-library/3.6/Rcpp/include/Rcpp.h:27,
+                 from RcppEDMCommon.h:4,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/complex:547:5: note: candidate: ‘template<class _Tp, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::complex<_Tp>&)’
+     operator<<(basic_ostream<_CharT, _Traits>& __os, const complex<_Tp>& __x)
+     ^~~~~~~~
+/usr/include/c++/8.3.0/complex:547:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘const std::complex<_Tp>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/valarray:592,
+                 from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note: candidate: ‘template<class _Dom1, class _Dom2> std::_Expr<std::_BinClos<std::__shift_left, std::_Expr, std::_Expr, _Dom1, _Dom2>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::_Expr<_Dom2, typename _Dom2::value_type>&)’
+     _DEFINE_EXPR_BINARY_OPERATOR(<<, __shift_left)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/valarray:592,
+                 from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note: candidate: ‘template<class _Dom> std::_Expr<std::_BinClos<std::__shift_left, std::_Expr, std::_Constant, _Dom, typename _Dom::value_type>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const typename _Dom::value_type&)’
+     _DEFINE_EXPR_BINARY_OPERATOR(<<, __shift_left)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/valarray:592,
+                 from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note: candidate: ‘template<class _Dom> std::_Expr<std::_BinClos<std::__shift_left, std::_Constant, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const typename _Dom::value_type&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+     _DEFINE_EXPR_BINARY_OPERATOR(<<, __shift_left)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/valarray:592,
+                 from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note: candidate: ‘template<class _Dom> std::_Expr<std::_BinClos<std::__shift_left, std::_Expr, std::_ValArray, _Dom, typename _Dom::value_type>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const std::_Expr<_Dom1, typename _Dom1::value_type>&, const std::valarray<typename _Dom::value_type>&)’
+     _DEFINE_EXPR_BINARY_OPERATOR(<<, __shift_left)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from /usr/include/c++/8.3.0/valarray:592,
+                 from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note: candidate: ‘template<class _Dom> std::_Expr<std::_BinClos<std::__shift_left, std::_ValArray, std::_Expr, typename _Dom::value_type, _Dom>, typename std::__fun<std::__shift_left, typename _Dom1::value_type>::result_type> std::operator<<(const std::valarray<typename _Dom::value_type>&, const std::_Expr<_Dom1, typename _Dom1::value_type>&)’
+     _DEFINE_EXPR_BINARY_OPERATOR(<<, __shift_left)
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/bits/valarray_after.h:410:5: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘const std::_Expr<_Dom1, typename _Dom1::value_type>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/valarray:1180:1: note: candidate: ‘template<class _Tp> std::_Expr<std::_BinClos<std::__shift_left, std::_ValArray, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__shift_left, _Tp>::result_type> std::operator<<(const std::valarray<_Tp>&, const std::valarray<_Tp>&)’
+ _DEFINE_BINARY_OPERATOR(<<, __shift_left)
+ ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/valarray:1180:1: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::valarray<_Tp>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/valarray:1180:1: note: candidate: ‘template<class _Tp> std::_Expr<std::_BinClos<std::__shift_left, std::_ValArray, std::_Constant, _Tp, _Tp>, typename std::__fun<std::__shift_left, _Tp>::result_type> std::operator<<(const std::valarray<_Tp>&, const _Tp&)’
+ _DEFINE_BINARY_OPERATOR(<<, __shift_left)
+ ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/valarray:1180:1: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘std::ostream’ {aka ‘std::basic_ostream<char>’} is not derived from ‘const std::valarray<_Tp>’
+   cout<<df[idx][0]<<endl;
+                  ^
+In file included from ../../cppEDM/src/Common.h:7,
+                 from RcppEDMCommon.h:7,
+                 from DataFrame.cpp:1:
+/usr/include/c++/8.3.0/valarray:1180:1: note: candidate: ‘template<class _Tp> std::_Expr<std::_BinClos<std::__shift_left, std::_Constant, std::_ValArray, _Tp, _Tp>, typename std::__fun<std::__shift_left, _Tp>::result_type> std::operator<<(const _Tp&, const std::valarray<_Tp>&)’
+ _DEFINE_BINARY_OPERATOR(<<, __shift_left)
+ ^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/8.3.0/valarray:1180:1: note:   template argument deduction/substitution failed:
+DataFrame.cpp:26:18: note:   ‘SEXPREC’ is not derived from ‘const std::valarray<_Tp>’
+   cout<<df[idx][0]<<endl;
+                  ^
+make[2]: *** [/usr/lib64/R/etc/Makeconf:176: DataFrame.o] Error 1
+ERROR: compilation failed for package ‘rEDMNew’
+* removing ‘/home/camcam/R/x86_64-pc-linux-gnu-library/3.6/rEDMNew’
+* restoring previous ‘/home/camcam/R/x86_64-pc-linux-gnu-library/3.6/rEDMNew’
+make[1]: *** [makefile:8: build] Error 1
+make: *** [makefile:2: all] Error 2
