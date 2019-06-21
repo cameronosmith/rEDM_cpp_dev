@@ -1,12 +1,12 @@
 
-#include "PyBind.h"
+#include "RcppEDMCommon.h"
 
 //---------------------------------------------------------------
 // Input data path and file
 //---------------------------------------------------------------
-py::dict PredictInterval_pybind( std::string pathIn,
+r::DataFrame PredictInterval_rcpp( std::string pathIn,
                                  std::string dataFile,
-                                 DF          dataList,
+                                r::DataFrame dataList,
                                  std::string pathOut,
                                  std::string predictFile,
                                  std::string lib,
@@ -55,11 +55,8 @@ py::dict PredictInterval_pybind( std::string pathIn,
                                      numThreads );
     }
     else {
-        throw std::runtime_error("PredictInterval_pybind(): Invalid input.\n");
+        throw std::runtime_error("PredictInterval_rcpp(): Invalid input.\n");
     }
 
-    DF       df = DataFrameToDF( PredictDF );
-    py::dict D  = DFtoDict( df );
-    
-    return D;
+    return DataFrameToDF( PredictDF );
 }

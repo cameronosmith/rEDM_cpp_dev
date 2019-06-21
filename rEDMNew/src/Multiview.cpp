@@ -1,13 +1,13 @@
 
-#include "PyBind.h"
+#include "RcppEDMCommon.h"
 
 //--------------------------------------------------------------
 // 
 //--------------------------------------------------------------
-std::map< std::string, py::dict > Multiview_pybind (
+r::List Multiview_rcpp (
     std::string  pathIn,
     std::string  dataFile,
-    DF           dataList,
+    r::DataFrame dataList,
     std::string  pathOut,
     std::string  predictFile,
     std::string  lib,
@@ -62,16 +62,14 @@ std::map< std::string, py::dict > Multiview_pybind (
                         numThreads );
     }
     else {
-        throw std::runtime_error( "Multiview_pybind(): Invalid input.\n" );
+        throw std::runtime_error( "Multiview_rcpp(): Invalid input.\n" );
     }
 
-    DF df_combo_rho   = DataFrameToDF( MV.Combo_rho   );
-    DF df_predictions = DataFrameToDF( MV.Predictions );
+    r::DataFrame df_combo_rho   = DataFrameToDF( MV.Combo_rho   );
+    r::DataFrame df_predictions = DataFrameToDF( MV.Predictions );
 
-    std::map< std::string, py::dict > MV_;
+	r::List output = r::List::create(r::Named("Combo_rho") = df_combo_rho,
+									 r::Named("Predictions")=df_predictions );
 
-    MV_["Combo_rho"  ] = DFtoDict( df_combo_rho   );
-    MV_["Predictions"] = DFtoDict( df_predictions );
-
-    return MV_;
+    return output;
 }

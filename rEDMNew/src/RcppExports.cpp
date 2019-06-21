@@ -5,20 +5,11 @@
 
 using namespace Rcpp;
 
-// rcpp_testing
-Rcpp::List rcpp_testing(Rcpp::DataFrame dataframe);
-RcppExport SEXP _rEDMNew_rcpp_testing(SEXP dataframeSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::DataFrame >::type dataframe(dataframeSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_testing(dataframe));
-    return rcpp_result_gen;
-END_RCPP
-}
+
+RcppExport SEXP _rcpp_module_boot_rEDMNew();
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rEDMNew_rcpp_testing", (DL_FUNC) &_rEDMNew_rcpp_testing, 1},
+    {"_rcpp_module_boot_rEDMNew", (DL_FUNC) &_rcpp_module_boot_rEDMNew, 0},
     {NULL, NULL, 0}
 };
 

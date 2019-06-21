@@ -1,17 +1,17 @@
 
-#include "PyBind.h"
+#include "RcppEDMCommon.h"
 #include "Embed.h"
 
 //---------------------------------------------------------------
 // 
 //---------------------------------------------------------------
-py::dict Embed_pybind( std::string path,
-                       std::string dataFile,
-                       DF          dataList,
-                       int         E,
-                       int         tau,
-                       std::string columns,
-                       bool        verbose ) {
+r::DataFrame Embed_rcpp( std::string path,
+                       std::string 			dataFile,
+                       r::DataFrame         df,
+                       int        			E,
+                       int         			tau,
+                       std::string 			columns,
+                       bool        			verbose ) {
 
     DataFrame< double > embedded;
     
@@ -24,8 +24,8 @@ py::dict Embed_pybind( std::string path,
                           columns,
                           verbose );
     }
-    else if ( dataList.size() ) {
-        DataFrame< double > dataFrame = DFToDataFrame( dataList );
+    else if ( df.ncol() ) {
+        DataFrame< double > dataFrame = DFToDataFrame( df );
         
         embedded = Embed( dataFrame,
                           E,
@@ -34,23 +34,20 @@ py::dict Embed_pybind( std::string path,
                           verbose );
     }
     else {
-        throw std::runtime_error( "Embed_pybind(): Invalid input.\n" );
+        throw std::runtime_error( "Embed_rcpp(): Invalid input.\n" );
     }
 
-    DF       df = DataFrameToDF( embedded );
-    py::dict D  = DFtoDict( df );
-    
-    return D;
+    return DataFrameToDF( embedded );
 }
 
 //---------------------------------------------------------------
 // 
 //---------------------------------------------------------------
-py::dict MakeBlock_pybind( DF                       dataList,
-                           int                      E,
-                           int                      tau,
-                           std::vector<std::string> columnNames,
-                           bool                     verbose ) {
+r::DataFrame MakeBlock_rcpp( r::DataFrame           	dataList,
+							   int                      E,
+							   int                      tau,
+							   std::vector<std::string> columnNames,
+							   bool                     verbose ) {
     
     DataFrame< double > dataFrame = DFToDataFrame( dataList );
 
@@ -60,8 +57,5 @@ py::dict MakeBlock_pybind( DF                       dataList,
                                            columnNames,
                                            verbose );
 
-    DF       df = DataFrameToDF( block );
-    py::dict D  = DFtoDict( df );
-    
-    return D;
+    return DataFrameToDF( block );
 }

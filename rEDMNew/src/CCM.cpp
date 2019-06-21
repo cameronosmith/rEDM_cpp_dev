@@ -1,25 +1,25 @@
 
-#include "PyBind.h"
+#include "RcppEDMCommon.h"
 
 //-----------------------------------------------------------
 // 
 //-----------------------------------------------------------
-py::dict CCM_pybind( std::string pathIn, 
-                     std::string dataFile,
-                     DF          dataList,
-                     std::string pathOut,
-                     std::string predictFile,
-                     int         E,
-                     int         Tp,
-                     int         knn,
-                     int         tau, 
-                     std::string columns,
-                     std::string target,
-                     std::string libSizes,
-                     int         sample,
-                     bool        random,
-                     unsigned    seed, 
-                     bool        verbose ) {
+r::DataFrame CCM_rcpp( std::string pathIn, 
+						 std::string dataFile,
+						r::DataFrame dataList,
+						 std::string pathOut,
+						 std::string predictFile,
+						 int         E,
+						 int         Tp,
+						 int         knn,
+						 int         tau, 
+						 std::string columns,
+						 std::string target,
+						 std::string libSizes,
+						 int         sample,
+						 bool        random,
+						 unsigned    seed, 
+						 bool        verbose ) {
     
     DataFrame< double > ccmOutput;
 
@@ -61,11 +61,8 @@ py::dict CCM_pybind( std::string pathIn,
                          verbose );
     }
     else {
-        throw std::runtime_error( "CCM_pybind(): Invalid input.\n" );
+        throw std::runtime_error( "CCM_rcpp(): Invalid input.\n" );
     }
 
-    DF       df = DataFrameToDF( ccmOutput );
-    py::dict D  = DFtoDict( df );
-    
-    return D;
+    return DataFrameToDF( ccmOutput );
 }
