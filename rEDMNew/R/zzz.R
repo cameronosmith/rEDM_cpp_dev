@@ -1,1 +1,1 @@
-loadModule("rEDMNew", TRUE)
+loadModule("rEDMInternal", TRUE)

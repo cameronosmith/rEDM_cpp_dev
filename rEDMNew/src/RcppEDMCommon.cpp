@@ -144,21 +144,24 @@ auto PredictNonlinearArgs = r::List::create(
                r::_["embedded"]    = false,
                r::_["verbose"]     = false,
                r::_["numThreads"]  = 4 );
-    
+void hello_world_cpp(){
+	cout << "hello word\n";
+} 
 //export the functions
-RCPP_MODULE(rEDMNew) {
-    r::function( "ComputeError", &ComputeError_rcpp );
-	r::function( "ReadDataFrame", &ReadDataFrame, ReadDataFrameArgs);
-	r::function( "MakeBlock", &MakeBlock_rcpp, MakeBlockArgs);
-	r::function( "Embed", &Embed_rcpp, EmbedArgs);
-	r::function( "Simplex", &Simplex_rcpp, SimplexArgs);
-	r::function( "SMap", &SMap_rcpp, SMapArgs);
-	r::function( "Multiview", &Multiview_rcpp, MultiviewArgs);
-	r::function( "CCM", &CCM_rcpp, CCMArgs);
-	r::function( "EmbedDimension", &EmbedDimension_rcpp, 
+RCPP_MODULE(rEDMInternal) {
+	r::function( "INTERNAL_hello_world_cpp",&hello_world_cpp);
+    r::function( "INTERNAL_ComputeError", &ComputeError_rcpp );
+	r::function( "INTERNAL_ReadDataFrame", &ReadDataFrame, ReadDataFrameArgs);
+	r::function( "INTERNAL_MakeBlock", &MakeBlock_rcpp, MakeBlockArgs);
+	r::function( "INTERNAL_Embed", &Embed_rcpp, EmbedArgs);
+	r::function( "INTERNAL_Simplex", &Simplex_rcpp, SimplexArgs);
+	r::function( "INTERNAL_SMap", &SMap_rcpp, SMapArgs);
+	r::function( "INTERNAL_Multiview", &Multiview_rcpp, MultiviewArgs);
+	r::function( "INTERNAL_CCM", &CCM_rcpp, CCMArgs);
+	r::function( "INTERNAL_EmbedDimension", &EmbedDimension_rcpp, 
 			EmbedDimensionArgs);
-	r::function( "PredictInterval", &PredictInterval_rcpp, 
+	r::function( "INTERNAL_PredictInterval", &PredictInterval_rcpp, 
 			PredictIntervalArgs);
-	r::function( "PredictNonlinear", &PredictNonlinear_rcpp, 
+	r::function( "INTERNAL_PredictNonlinear", &PredictNonlinear_rcpp, 
 			PredictNonlinearArgs);
 }
