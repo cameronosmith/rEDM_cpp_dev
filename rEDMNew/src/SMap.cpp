@@ -4,7 +4,7 @@
 //----------------------------------------------------------
 // 
 //----------------------------------------------------------
-r::List SMap_rcpp(   std::string pathIn, 
+r::List SMap_rcpp(     std::string pathIn, 
 					   std::string dataFile,
 					   r::DataFrame dataList,
 					   std::string pathOut,

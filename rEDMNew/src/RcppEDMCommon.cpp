@@ -2,12 +2,6 @@
 #include "RcppEDMCommon.h"
 
 
-Rcpp::DataFrame rcpp_testing(Rcpp::DataFrame dataframe) {
-
-	DataFrame< double > df = DFToDataFrame( dataframe );
-	return DataFrameToDF( df );
-}
-//the default args for the functions
 auto ReadDataFrameArgs = r::List::create(
 			r::_["path"]="",r::_["file"]="" );
 auto MakeBlockArgs = r::List::create( 
@@ -43,9 +37,8 @@ auto SimplexArgs = r::List::create(
     
 auto SMapArgs = r::List::create( 
                r::_["pathIn"]      = std::string("./"),
-               r::_["pathIn"]      = std::string("./"),
-               r::_["dataFile"]    = std::string(""),
-               r::_["pyInput"]     = r::DataFrame(),
+               r::_["dataFile"]    = std::string("./"),
+               r::_["dataList"]    = r::DataFrame(),
                r::_["pathOut"]     = std::string("./"),
                r::_["predictFile"] = std::string(""),
                r::_["lib"]         = std::string(""),

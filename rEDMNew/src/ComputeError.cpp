@@ -12,7 +12,7 @@ r::List ComputeError_rcpp (
     std::vector<double> vec2 ) {
 
 	std::valarray<double> val1 ( vec1.data(), vec1.size() );		
-	std::valarray<double> val2 ( vec1.data(), vec1.size() );		
+	std::valarray<double> val2 ( vec2.data(), vec2.size() );		
 
     VectorError vecErr = ComputeError( val1, val2 );
 
