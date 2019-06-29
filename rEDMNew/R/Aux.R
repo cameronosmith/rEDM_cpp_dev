@@ -1,6 +1,28 @@
 #wrapping the wrapped the auxillary functions used in rEDM
 
 #------------------------------------------------------------------------
+#run model output on varying the parameters in a range
+#input	: named list of args to vary
+#output	: dataframe with all args ran
+#------------------------------------------------------------------------
+RunModelVariedParams <- function( varied_args ) {
+	for ( arg in names(varied_args) ) {
+		arg_range <- varied_args[arg]
+		print(paste(arg,arg_range))
+		print(arg_range)
+	}
+}
+
+#------------------------------------------------------------------------
+#get stats on model output
+#input	: model output
+#output	: dataframe with stats
+#------------------------------------------------------------------------
+GetModelStats <- function ( model_output ) {
+	stats <- ComputeError ( model_output$Observations, model_output$Predictions )
+	print(stats)
+}
+#------------------------------------------------------------------------
 # 
 #------------------------------------------------------------------------
 ComputeError <- function( obs, pred ) {
@@ -8,25 +30,52 @@ ComputeError <- function( obs, pred ) {
     return ( INTERNAL_ComputeError( obs, pred ) )
 }
 #------------------------------------------------------------------------
-# 
+# takes in df and potentially empty columns and makes sure not empty
 #------------------------------------------------------------------------
-ReadDataFrame <- function( path, file ) {
-    #Read path/file into DataFrame.
-    df <- ReadDataFrame( path, file )
-    return ( df )
-} 
+checkCols <- function( df,  cols ) {
+	if ( cols=="" && ncol(df)!=0 ) {
+		cols <- colnames(df)[1]
+	}	
+	return ( cols )
+}
+#------------------------------------------------------------------------
+# takes in potentially empty lib/pred args and gives default val
+#------------------------------------------------------------------------
+checkEmptyLibPred <- function ( lib, pred, dataFrame ) {
+	if ( ( lib == "" || pred == "" ) && nrow(dataFrame)!=0 ) {
+		half 	<- nrow(dataFrame)/3
+		lib 	<- paste(0, half )
+		pred 	<- paste(half, 2*nrow(dataFrame)/3 )
+	}
+	return (list(lib=lib,pred=pred))
+}
+#------------------------------------------------------------------------
+# takes in potential lib/pred arg as list and returns as string
+#------------------------------------------------------------------------
+checkRangeForm <- function ( libPredArg, dataFrame ) {
+	if ( typeof(libPredArg)=="double"||typeof(libPredArg)=="integer"){
+		start <- libPredArg[1]
+		end <- libPredArg[length(libPredArg)]
+		libPredArg <- paste(start,end)
+	}
+	return (libPredArg)
+}
 #------------------------------------------------------------------------
 # 
 #------------------------------------------------------------------------
 isValidDF <- function(dataFile, dataFrame, functionName ) {
 	# Establish DF as empty list or Pandas DataFrame for Embed()
-    if ( !is.null(dataFile) ) {
+    if ( !is.null(dataFile) && dataFile!="" ){
         return( data.frame() )
 	}
     else if (inherits(dataFrame, "data.frame") ) {
-        if (nrow(dataFrame) == 0 || dataFrame == NULL )
+        if (nrow(dataFrame) == 0)
             stop( paste(functionName,"(): dataFrame is empty." ) )
 		return( dataFrame )
+	}
+	else if ( typeof(dataFrame)=="double"||typeof(dataFrame)=="integer") {
+		tmp_df <- data.frame(X1=dataFrame)
+        return( tmp_df )
 	}
     else {
         stop( paste( functionName, "(): Invalid data input." ) )
