@@ -12,15 +12,17 @@ RunModelVariedParams <- function( varied_args ) {
 		print(arg_range)
 	}
 }
-
 #------------------------------------------------------------------------
 #get stats on model output
-#input	: model output
+#input	: model output, args to include in model output
 #output	: dataframe with stats
 #------------------------------------------------------------------------
-GetModelStats <- function ( model_output ) {
-	stats <- ComputeError ( model_output$Observations, model_output$Predictions )
-	print(stats)
+GetModelStats <- function ( model_output, relevant_args ) {
+	stats 			<- ComputeError ( 	model_output$Observations,
+										model_output$Predictions )
+	all_relevant 	<- c( relevant_args, stats )
+	stats_output 	<- rbind.data.frame( all_relevant )
+	return( stats_output )
 }
 #------------------------------------------------------------------------
 # 
@@ -45,7 +47,7 @@ checkEmptyLibPred <- function ( lib, pred, dataFrame ) {
 	if ( ( lib == "" || pred == "" ) && nrow(dataFrame)!=0 ) {
 		half 	<- nrow(dataFrame)/3
 		lib 	<- paste(0, half )
-		pred 	<- paste(half, 2*nrow(dataFrame)/3 )
+		pred 	<- paste(half, 1+2*nrow(dataFrame)/3 )
 	}
 	return (list(lib=lib,pred=pred))
 }
@@ -55,7 +57,7 @@ checkEmptyLibPred <- function ( lib, pred, dataFrame ) {
 checkRangeForm <- function ( libPredArg, dataFrame ) {
 	if ( typeof(libPredArg)=="double"||typeof(libPredArg)=="integer"){
 		start <- libPredArg[1]
-		end <- libPredArg[length(libPredArg)]
+		end <- libPredArg[length(libPredArg)]+1
 		libPredArg <- paste(start,end)
 	}
 	return (libPredArg)
@@ -84,7 +86,7 @@ isValidDF <- function(dataFile, dataFrame, functionName ) {
 #------------------------------------------------------------------------
 # 
 #------------------------------------------------------------------------
-PlotObsPred <- function( df, dataFile = None, E = None, Tp = None, block = True ) {
+PlotObsPred <- function( df, dataFile = None, E = None, Tp = None, block = TRUE ) {
     #Plot observations and predictions
 	df[is.na(df)] <- 0
     # stats: {'MAE': 0., 'RMSE': 0., 'rho': 0. }
