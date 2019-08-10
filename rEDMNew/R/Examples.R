@@ -61,4 +61,3 @@ Examples <- function() {
               3, 0, 0, 1, "anchovy", "np_sst",
               "10 80 10", 100, TRUE, 0, TRUE, TRUE )
 }
-Examples()
