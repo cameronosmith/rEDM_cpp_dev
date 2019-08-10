@@ -1,6 +1,6 @@
 #wrapping the wrapped edm functions 
 
-if ( TRUE ) {
+if ( FALSE ) {
     source("Aux.R")
     library(rEDMNew)
 } else {
