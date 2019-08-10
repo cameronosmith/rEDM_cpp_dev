@@ -1,6 +1,6 @@
 #wrapping the wrapped edm functions 
 
-if ( FALSE ) {
+if ( TRUE ) {
     source("Aux.R")
     library(rEDMNew)
 } else {
@@ -104,7 +104,8 @@ Simplex <- function (
                                         embedded, 
                                         verbose )
     if ( showPlot ) {
-        #PlotObsPred( dataFrame, dataFile, E, Tp ) 
+        if ( statsOnly ) print("For showPlot you need to have statsOnly=FALSE")
+        PlotObsPred( model_output, dataFile, E, Tp ) 
     }
 
     return ( model_output )
@@ -131,7 +132,8 @@ SMap <- function(
 				  jacobians    = "",
 				  embedded     = FALSE,
 				  verbose      = FALSE,
-				  statsOnly	   = TRUE ) {
+				  statsOnly	   = TRUE,
+                  showPlot ) {
     #S-Map prediction on path/file.
 
     # Establish DF as empty list or Pandas DataFrame for SMap()
@@ -161,6 +163,12 @@ SMap <- function(
                                     jacobians,
                                     embedded,
                                     verbose)
+    if (showPlot) {
+      PlotObsPred( model_output$predictions, dataFile, E, Tp, FALSE )                           
+      PlotCoeff  ( model_output$coefficients, dataFile, E, Tp )                                  
+    }
+        
+
     return( model_output )
 }
 
@@ -215,8 +223,9 @@ Multiview <- function (
 							  verbose,
 							  numThreads )
 
-    if ( showPlot )
+    if ( showPlot ) {
         PlotObsPred( D$Predictions, dataFile, E, Tp )
+    }
 
     return( D )
 }

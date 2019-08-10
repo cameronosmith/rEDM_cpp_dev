@@ -90,8 +90,8 @@ PlotObsPred <- function( df, dataFile = None, E = None, Tp = None, block = TRUE 
     #Plot observations and predictions
 	df[is.na(df)] <- 0
     # stats: {'MAE': 0., 'RMSE': 0., 'rho': 0. }
-    stats = ComputeError( df[['Observations']],
-						  df[['Predictions']] )
+    stats = ComputeError( df$Observations,
+						  df$Predictions )
     title = paste(dataFile , "\nE=" , E , " Tp=" , Tp,
             " rho="   , round( stats[['rho']],  2 ),    
             " RMSE=" , round( stats[['RMSE']], 2  ) )
