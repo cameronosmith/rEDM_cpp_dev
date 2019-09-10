@@ -1,6 +1,6 @@
 #wrapping the wrapped edm functions 
 
-if ( FALSE ) {
+if ( TRUE ) {
     source("Aux.R")
     library(rEDMNew)
 } else {
@@ -18,25 +18,26 @@ MakeBlock <- function( dataFrame,
     #Takens time-delay embedding on columnNames in Pandas DataFrame.
     #Truncates the timeseries by tau * (E-1) rows.
 
-	dataFrame <- isValidDF( NULL, dataFrame, "MakeBlock" )
+	dataFrame <- isValidDF( "", dataFrame, "MakeBlock" )
 
-	if ( typeof(columnNames)=="character" && columnNames == "" ) 
-		columnNames <- colnames(dataFrame)
+	#check cols
+	columns <- checkCols( dataFrame, columns )
 
     # cppEDM Embed called
-    made_block = INTERNAL_MakeBlock(dataFrame, E, tau, columnNames, verbose )
+    made_block = INTERNAL_MakeBlock(dataFrame, E, tau, columns, verbose )
 
     return ( made_block )
 }
 #------------------------------------------------------------------------
 # 
 #------------------------------------------------------------------------
-Embed <- function (dataFrame = NULL,
+Embed <- function (
+				   path      = "./",
+				   dataFile  = "",
+                   dataFrame = NULL,
 				   E         = 0, 
 				   tau       = 1,
 				   columns   = "",
-				   path      = "./",
-				   dataFile  = "",
 				   verbose   = FALSE ) {
     #Takens time-delay embedding on path/file.
     #Embed DataFrame columns (subset) in E dimensions.
@@ -74,20 +75,18 @@ Simplex <- function (
 					 Tp           = 1,
 					 knn          = 0,
 					 tau          = 1,
+                     exclusionRadius = 0,
 					 columns      = "",
 					 target       = "", 
 					 embedded     = FALSE,
 					 verbose      = FALSE,
-					 statsOnly	  = TRUE,
+                     const_pred   = FALSE,
 					 showPlot     = FALSE ) {
 
 	#check args valid
-    #DF 		<- isValidDF( dataFile, dataFrame, "Simplex" )
-	#columns <- checkCols( DF, columns )
-	#lib	 	<- checkRangeForm( lib )
-	#pred 	<- checkRangeForm( pred )
-	#tmp  	<-checkEmptyLibPred(lib,pred,DF); lib <- tmp[[1]];pred<-tmp[[2]];
-
+    dataFrame   <- isValidDF( dataFile, dataFrame, "Simplex" )
+	columns     <- checkCols( dataFrame, columns )
+	
     model_output <- INTERNAL_Simplex(   pathIn, 
                                         dataFile, 
                                         dataFrame, 
@@ -99,12 +98,13 @@ Simplex <- function (
                                         Tp, 
                                         knn, 
                                         tau, 
+                                        exclusionRadius,
                                         columns, 
                                         target, 
                                         embedded, 
+                                        const_pred,
                                         verbose )
     if ( showPlot ) {
-        if ( statsOnly ) print("For showPlot you need to have statsOnly=FALSE")
         PlotObsPred( model_output, dataFile, E, Tp ) 
     }
 
@@ -113,8 +113,7 @@ Simplex <- function (
 #------------------------------------------------------------------------
 #
 #------------------------------------------------------------------------
-SMap <- function( 
-				  pathIn       = "./",
+SMap <- function( pathIn       = "./",
 				  dataFile     = "",
                   dataFrame    = NULL,
 				  pathOut      = "./",
@@ -126,25 +125,21 @@ SMap <- function(
 				  knn          = 0,
 				  tau          = 1,
 				  theta        = 0,
+                  exclusionRadius = 0,
 				  columns      = "",
 				  target       = "",
 				  smapFile     = "",
 				  jacobians    = "",
 				  embedded     = FALSE,
 				  verbose      = FALSE,
-				  statsOnly	   = TRUE,
-                  showPlot ) {
-    #S-Map prediction on path/file.
+                  showPlot     = FALSE ) {
 
-    # Establish DF as empty list or Pandas DataFrame for SMap()
-    #dataFrame <- isValidDF( dataFile, dataFrame, "SMap")
-	#columns <- checkCols( dataFrame, columns )
-	#lib	 <- checkRangeForm( lib )
-	#pred <- checkRangeForm( pred )
-	#tmp <-	checkEmptyLibPred(lib,pred,dataFrame);
-    #lib <- tmp[[1]];
-    #pred<-tmp[[2]];
-	
+	#check args valid
+    dataFrame   <- isValidDF( dataFile, dataFrame, "SMap" )
+	columns     <- checkCols( dataFrame, columns )
+
+    # return is df with predictions and coefficients
+
     model_output <- INTERNAL_SMap(  pathIn,
                                     dataFile,
                                     dataFrame,
@@ -157,13 +152,16 @@ SMap <- function(
                                     knn,
                                     tau,
                                     theta,
+                                    exclusionRadius,
                                     columns,
                                     target,
                                     smapFile,
                                     jacobians,
                                     embedded,
+                                    const_pred,
                                     verbose)
     if (showPlot) {
+
       PlotObsPred( model_output$predictions, dataFile, E, Tp, FALSE )                           
       PlotCoeff  ( model_output$coefficients, dataFile, E, Tp )                                  
     }
@@ -196,16 +194,10 @@ Multiview <- function (
     #Multiview prediction on path/file.
 
     # Establish DF as empty list or Pandas DataFrame for Multiview()
-	#dataFrame <- isValidDF( dataFile, dataFrame, "Multiview" )
-	#columns <- checkCols( dataFrame, columns )
-	#lib	 	<- checkRangeForm( lib )
-	#pred 	<- checkRangeForm( pred )
-	#tmp 	<- checkEmptyLibPred(lib,pred,dataFrame);lib <- tmp[[1]];pred<-tmp[[2]];
-	#if ( E==0 ) E=1
-   	#if ( knn==0 ) knn = E+1 
+	dataFrame <- isValidDF( dataFile, dataFrame, "Multiview" )
+	columns <- checkCols( dataFrame, columns )
     
-    # D is a Python dict from pybind11 < cppEDM Multiview:
-    #  { "Combo_rho" : {}, "Predictions" : {} }
+    #  returns df with "Combo_rho" and  "Predictions" 
     D <- INTERNAL_Multiview(  pathIn,
 							  dataFile,
 							  dataFrame,
@@ -253,7 +245,8 @@ CCM <- function (
     #Convergent Cross Mapping on path/file.
 
     # Establish DF as empty list or Pandas DataFrame for CCM()
-	#dataFrame <- isValidDF( dataFile, dataFrame, "CCM" )
+	dataFrame <- isValidDF( dataFile, dataFrame, "CCM" )
+	columns <- checkCols( dataFrame, columns )
     
     # D is a Python dict from pybind11 < cppEDM CCM
     df <- INTERNAL_CCM( pathIn,
@@ -274,10 +267,9 @@ CCM <- function (
                         verbose )
 
     if (showPlot) {
-		#fix this
         title <- paste( dataFile , "\nE=" , E )
-		plot( df$LibSize, df[['anchovy:np_sst']], main=title, col="red",type="l")
-		lines( df$LibSize, df[['np_sst:anchovy']], col="green")
+		plot(df$LibSize, df[['anchovy:np_sst']], main=title, col="red",type="l")
+		lines(df$LibSize, df[['np_sst:anchovy']], col="green")
 		legend('topright', names(df)[-1] , 
 		   lty=1, col=c('red', 'green' ), bty='n', cex=.75)
 	}
@@ -295,6 +287,7 @@ EmbedDimension <- function (
 							predictFile  = "",
 							lib          = "",
 							pred         = "",
+							maxE         = 10,
 							Tp           = 1,
 							tau          = 1,
 							columns      = "",
@@ -304,29 +297,27 @@ EmbedDimension <- function (
 							numThreads   = 4,
 							showPlot     = TRUE ) {
     #Estimate optimal embedding dimension [1,10] on path/file.
-	#lib	 <- checkRangeForm( lib )
-	#pred <- checkRangeForm( pred )
 
     # Establish DF as empty list or Pandas DataFrame for EmbedDimension()
-	#dataFrame 	<- isValidDF( dataFile, dataFrame, "EmbedDimension" )	
-	#columns 	<- checkCols( dataFrame, columns )
-	#tmp <-	checkEmptyLibPred(lib,pred,dataFrame);lib <- tmp[[1]];pred<-tmp[[2]];
+	dataFrame 	<- isValidDF( dataFile, dataFrame, "EmbedDimension" )	
+	columns 	<- checkCols( dataFrame, columns )
 
     # D is a Python dict from pybind11 < cppEDM CCM
-    df = INTERNAL_EmbedDimension(pathIn,
-					   dataFile,
-					   dataFrame,
-					   pathOut,
-					   predictFile,
-					   lib,
-					   pred, 
-					   Tp,
-					   tau,
-					   columns,
-					   target,
-					   embedded,
-					   verbose,
-					   numThreads )
+    df = INTERNAL_EmbedDimension(  pathIn,
+                                   dataFile,
+                                   dataFrame,
+                                   pathOut,
+                                   predictFile,
+                                   lib,
+                                   pred, 
+                                   maxE, 
+                                   Tp,
+                                   tau,
+                                   columns,
+                                   target,
+                                   embedded,
+                                   verbose,
+                                   numThreads )
 
     if ( showPlot ) {
         title <- paste(dataFile , "\nTp=" , Tp )
@@ -340,14 +331,14 @@ EmbedDimension <- function (
 #------------------------------------------------------------------------
 #
 #------------------------------------------------------------------------
-PredictInterval <- function (
-							 pathIn       = "./",
+PredictInterval <- function (pathIn       = "./",
 							 dataFile     = "",
 							 dataFrame    = NULL,
 							 pathOut      = "./",
 							 predictFile  = "",
 							 lib          = "",
 							 pred         = "",
+							 maxTp        = 10,
 							 E            = 1,
 							 tau          = 1,
 							 columns      = "",
@@ -357,13 +348,10 @@ PredictInterval <- function (
 							 numThreads   = 4,
 							 showPlot     = TRUE ) {
     #Estimate optimal prediction interval [1,10] on path/file.
-	#lib	 <- checkRangeForm( lib )
-	#pred <- checkRangeForm( pred )
 
     # Establish DF as empty list or Pandas DataFrame for PredictInterval()
-	#dataFrame 	<- isValidDF( dataFile, dataFrame, "PredictInterval" )
-	#columns 	<- checkCols( dataFrame, columns )
-	#tmp <-	checkEmptyLibPred(lib,pred,dataFrame);lib <- tmp[[1]];pred<-tmp[[2]];
+	dataFrame 	<- isValidDF( dataFile, dataFrame, "PredictInterval" )
+	columns 	<- checkCols( dataFrame, columns )
     
     # D is a Python dict from pybind11 < cppEDM PredictInterval
     df = INTERNAL_PredictInterval(  pathIn,
@@ -373,6 +361,7 @@ PredictInterval <- function (
                                     predictFile,
                                     lib,
                                     pred, 
+                                    maxTp,
                                     E,
                                     tau,
                                     columns,
@@ -399,7 +388,8 @@ PredictNonlinear <- function (pathIn       = "./",
 							  predictFile  = "",
 							  lib          = "",
 							  pred         = "",
-							  E            = 0,
+							  theta        = "",
+							  E            = 1,
 							  Tp           = 1,
 							  tau          = 1,
 							  columns      = "",
@@ -409,11 +399,10 @@ PredictNonlinear <- function (pathIn       = "./",
 							  numThreads   = 4,
 							  showPlot     = TRUE ){
     #Estimate S-map localisation on theta in [0.01,9] on path/file.
-	#lib	 <- checkRangeForm( lib )
-	#pred <- checkRangeForm( pred )
 
     # Establish DF as empty list or Pandas DataFrame for PredictNonlinear()
-	#DF <- isValidDF( dataFile, dataFrame, "PredictNonlinear" )
+	DF      <- isValidDF( dataFile, dataFrame, "PredictNonlinear" )
+	columns <- checkCols( dataFrame, columns )
     
     # D is a Python dict from pybind11 < cppEDM PredictNonlinear
     df = INTERNAL_PredictNonlinear(  pathIn,
@@ -423,6 +412,7 @@ PredictNonlinear <- function (pathIn       = "./",
 									 predictFile,
 									 lib,
 									 pred, 
+									 theta,
 									 E,
 									 Tp,
 									 tau,

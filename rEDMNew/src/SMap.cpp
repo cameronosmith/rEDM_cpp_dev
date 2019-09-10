@@ -1,4 +1,3 @@
-
 #include "RcppEDMCommon.h"
 
 //----------------------------------------------------------
@@ -16,11 +15,13 @@ r::List SMap_rcpp(     std::string pathIn,
 					   int         knn,
 					   int         tau,
 					   double      theta,
+					   int         exlusionRadius,
 					   std::string columns,
 					   std::string target,
 					   std::string smapFile,
 					   std::string jacobians,
 					   bool        embedded,
+					   bool        const_predict,
 					   bool        verbose ) {
     SMapValues SM;
     
@@ -38,11 +39,13 @@ r::List SMap_rcpp(     std::string pathIn,
                    knn,
                    tau,
                    theta,
+                   exlusionRadius,
                    columns, 
                    target,
                    smapFile,
                    jacobians,
                    embedded,
+                   const_predict,
                    verbose);
     }
     else if ( dataList.size() ) {
@@ -58,11 +61,13 @@ r::List SMap_rcpp(     std::string pathIn,
                    knn,
                    tau,
                    theta,
+                   exlusionRadius,
                    columns, 
                    target,
                    smapFile,
                    jacobians,
                    embedded,
+                   const_predict,
                    verbose);
     }
     else {

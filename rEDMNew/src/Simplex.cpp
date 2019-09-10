@@ -15,9 +15,11 @@ r::DataFrame Simplex_rcpp(std::string pathIn,
                          int         	Tp,
                          int         	knn,
                          int         	tau, 
+                         int         	exclusionRadius, 
                          std::string 	columns,
                          std::string 	target,
                          bool        	embedded,
+                         bool        	const_predict,
                          bool        	verbose ) {
 
     DataFrame< double > S;
@@ -34,9 +36,11 @@ r::DataFrame Simplex_rcpp(std::string pathIn,
                      Tp,
                      knn,
                      tau,
+                     exclusionRadius,
                      columns,
                      target, 
                      embedded,
+                     const_predict,
                      verbose );
     }
     else if ( dataList.size() ) {
@@ -51,9 +55,11 @@ r::DataFrame Simplex_rcpp(std::string pathIn,
                      Tp,
                      knn,
                      tau,
+                     exclusionRadius,
                      columns,
                      target, 
                      embedded,
+                     const_predict,
                      verbose );
     }
     else {

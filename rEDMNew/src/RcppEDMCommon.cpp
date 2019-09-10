@@ -3,7 +3,7 @@
 
 
 auto ReadDataFrameArgs = r::List::create(
-			r::_["path"]="",r::_["file"]="" );
+               r::_["path"]="",r::_["file"]="" );
 auto MakeBlockArgs = r::List::create( 
                r::_["pyInput"]     = r::DataFrame(),
                r::_["E"]           = 0,
@@ -30,9 +30,11 @@ auto SimplexArgs = r::List::create(
                r::_["Tp"]          = 1,
                r::_["knn"]         = 0,
                r::_["tau"]         = 1,
+               r::_["exclusionRadius"]= 0,
                r::_["columns"]     = std::string(""),
                r::_["target"]      = std::string(""),
                r::_["embedded"]    = false,
+               r::_["const_predict"]= false,
                r::_["verbose"]     = false );
     
 auto SMapArgs = r::List::create( 
@@ -47,12 +49,14 @@ auto SMapArgs = r::List::create(
                r::_["Tp"]          = 1,
                r::_["knn"]         = 0,
                r::_["tau"]         = 1,
+               r::_["exclusionRadius"]= 0,
                r::_["theta"]       = 0,
                r::_["columns"]     = std::string(""),
                r::_["target"]      = std::string(""),
                r::_["smapFile"]    = std::string(""),
                r::_["jacobians"]   = std::string(""),
                r::_["embedded"]    = false,
+               r::_["const_predict"]= false,
                r::_["verbose"]     = false );
 auto MultiviewArgs = r::List::create( 
                r::_["pathIn"]      = std::string("./"),
@@ -97,6 +101,7 @@ auto EmbedDimensionArgs = r::List::create(
                r::_["predictFile"] = std::string(""),
                r::_["lib"]         = std::string(""),
                r::_["pred"]        = std::string(""),
+               r::_["maxE"]        = 10,
                r::_["Tp"]          = 1,
                r::_["tau"]         = 1,
                r::_["columns"]     = std::string(""),
@@ -113,6 +118,7 @@ auto PredictIntervalArgs = r::List::create(
                r::_["predictFile"] = std::string(""),
                r::_["lib"]         = std::string(""),
                r::_["pred"]        = std::string(""),
+               r::_["maxTp"]       = 10,
                r::_["E"]           = 0,
                r::_["tau"]         = 1,
                r::_["columns"]     = std::string(""),
@@ -129,6 +135,7 @@ auto PredictNonlinearArgs = r::List::create(
                r::_["predictFile"] = std::string(""),
                r::_["lib"]         = std::string(""),
                r::_["pred"]        = std::string(""),
+               r::_["theta"]       = std::string(""),
                r::_["E"]           = 0,
                r::_["Tp"]          = 1,
                r::_["tau"]         = 1,
@@ -137,12 +144,8 @@ auto PredictNonlinearArgs = r::List::create(
                r::_["embedded"]    = false,
                r::_["verbose"]     = false,
                r::_["numThreads"]  = 4 );
-void hello_world_cpp(){
-	cout << "hello word\n";
-} 
 //export the functions
 RCPP_MODULE(rEDMInternal) {
-	r::function( "INTERNAL_hello_world_cpp",&hello_world_cpp);
     r::function( "INTERNAL_ComputeError", &ComputeError_rcpp );
 	r::function( "INTERNAL_ReadDataFrame", &ReadDataFrame, ReadDataFrameArgs);
 	r::function( "INTERNAL_MakeBlock", &MakeBlock_rcpp, MakeBlockArgs);

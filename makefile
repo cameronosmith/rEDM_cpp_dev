@@ -1,6 +1,7 @@
 proj_name="rEDMNew"
 build:
 	rm rEDMNew_* -f 
+	#make -C $(proj_name)/cppEDM/src clean
 	make -C $(proj_name)/cppEDM/src
 	R CMD build $(proj_name)
 	#generate exports kinda hackish
