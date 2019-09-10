@@ -1,6 +1,6 @@
 #wrapping the wrapped edm functions 
 
-if ( TRUE ) {
+if ( FALSE ) {
     source("Aux.R")
     library(rEDMNew)
 } else {
@@ -131,6 +131,7 @@ SMap <- function( pathIn       = "./",
 				  smapFile     = "",
 				  jacobians    = "",
 				  embedded     = FALSE,
+				  const_pred   = FALSE,
 				  verbose      = FALSE,
                   showPlot     = FALSE ) {
 

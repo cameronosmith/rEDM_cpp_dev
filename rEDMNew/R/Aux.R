@@ -1,18 +1,6 @@
 #wrapping the wrapped the auxillary functions used in rEDM
 
 #------------------------------------------------------------------------
-#run model output on varying the parameters in a range
-#input	: named list of args to vary
-#output	: dataframe with all args ran
-#------------------------------------------------------------------------
-RunModelVariedParams <- function( varied_args ) {
-	for ( arg in names(varied_args) ) {
-		arg_range <- varied_args[arg]
-		print(paste(arg,arg_range))
-		print(arg_range)
-	}
-}
-#------------------------------------------------------------------------
 #get stats on model output
 #input	: model output, args to include in model output
 #output	: dataframe with stats
@@ -66,15 +54,18 @@ checkRangeForm <- function ( libPredArg, dataFrame ) {
 # 
 #------------------------------------------------------------------------
 isValidDF <- function(dataFile, dataFrame, functionName ) {
-	# Establish DF as empty list or Pandas DataFrame for Embed()
+	# Establish DF as empty list or return the valid data.frame 
     if ( !is.null(dataFile) && dataFile!="" ){
         return( data.frame() )
 	}
+    #check if df is valid
     else if (inherits(dataFrame, "data.frame") ) {
-        if (nrow(dataFrame) == 0)
+        if (nrow(dataFrame) == 0) {
             stop( paste(functionName,"(): dataFrame is empty." ) )
+        }
 		return( dataFrame )
 	}
+    #handles vector input ( time series as vec )
 	else if ( typeof(dataFrame)=="double"||typeof(dataFrame)=="integer") {
 		tmp_df <- data.frame(X1=dataFrame)
         return( tmp_df )
