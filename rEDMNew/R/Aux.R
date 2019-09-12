@@ -78,19 +78,20 @@ isValidDF <- function(dataFile, dataFrame, functionName ) {
 # 
 #------------------------------------------------------------------------
 PlotObsPred <- function( df, dataFile = None, E = None, Tp = None, block = TRUE ) {
+    df <- df[2:(nrow(df)-1),]
     #Plot observations and predictions
 	df[is.na(df)] <- 0
     # stats: {'MAE': 0., 'RMSE': 0., 'rho': 0. }
     stats = ComputeError( df$Observations,
 						  df$Predictions )
-    title = paste(dataFile , "\nE=" , E , " Tp=" , Tp,
+    title = paste("\nE=" , E , " Tp=" , Tp,
             " rho="   , round( stats[['rho']],  2 ),    
             " RMSE=" , round( stats[['RMSE']], 2  ) )
 
-	plot( df$Time, df$Observations, main=title,
+	plot( df$Observations, main=title,
 			xlab="Time", type="l",col="red")
-	lines(df$Time, df$Predictions,col="green")
-	legend('topright', names(df)[-1] , 
+	lines(df$Predictions,col="green")
+	legend('topright', c("Predictions","Observations") , 
 	   lty=1, col=c('red', 'green','blue' ), bty='n', cex=.75)
 }
     
@@ -107,9 +108,13 @@ PlotCoeff <- function( df, dataFile = None, E = None, Tp = None, block = True ){
 	all_cols <- colnames(df)
 	coef_cols <- all_cols[all_cols!="Time"]
 
+    old.par <- par(no.readonly = TRUE)
+
 	par(mfcol = c(3, 1))
-	plot( df$Time, df$C0, xlab="",ylab="", main=title, col="red")
-	plot( df$Time, df$C1, xlab="",ylab="",col="green")
-	plot( df$Time, df$C2, xlab="Time", ylab="hi",col="blue")
+	plot( df$C0, xlab="",ylab="c0", main=title, col="red", type="l")
+	plot( df$C1, xlab="",ylab="c1",col="green", type="l")
+	plot( df$C2, xlab="Time", ylab="c2",col="blue", type="l")
     
+    par( old.par )
+
 }

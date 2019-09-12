@@ -20,12 +20,21 @@ DataFrame< double > DFToDataFrame ( Rcpp::DataFrame df ) {
     // Create cpp DataFrame
     DataFrame< double > dataFrame ( numRows, colNames.size(), colNames ); 
 
+    //have to setup time column and time name for dataframe 
+    
+    r::CharacterVector tmp = r::as<r::CharacterVector>( df[0] );
+    dataFrame.Time()     = r::as< std::vector<std::string> >( tmp );
+    dataFrame.TimeName() = r::as<std::string>( 
+                        ((r::CharacterVector)df.names())[0] ); 
+
+
 	for ( size_t idx = 0; idx < df.ncol(); idx++ ) {
 		//unfortunately we can't convert numeric vec to valarray
 		std::vector<double> tmp = r::as<std::vector<double>>(df[idx]);
 		std::valarray<double> col ( tmp.data(), tmp.size() );
         dataFrame.WriteColumn( idx, col ); 
     }
+
     return dataFrame;
 }
 

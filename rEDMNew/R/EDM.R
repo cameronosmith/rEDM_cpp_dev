@@ -1,6 +1,7 @@
 #wrapping the wrapped edm functions 
 
-if ( FALSE ) {
+# run first block if just running code in this dir 
+if ( 0 ) {
     source("Aux.R")
     library(rEDMNew)
 } else {
@@ -63,8 +64,7 @@ Embed <- function (
 #------------------------------------------------------------------------
 #
 #------------------------------------------------------------------------
-Simplex <- function (
-				  	 pathIn       = "./",
+Simplex <- function (pathIn       = "./",
 					 dataFile     = "",
                      dataFrame    = NULL,
 					 pathOut      = "./",
@@ -268,7 +268,7 @@ CCM <- function (
                         verbose )
 
     if (showPlot) {
-        title <- paste( dataFile , "\nE=" , E )
+        title <- paste( "\nE=" , E )
 		plot(df$LibSize, df[['anchovy:np_sst']], main=title, col="red",type="l")
 		lines(df$LibSize, df[['np_sst:anchovy']], col="green")
 		legend('topright', names(df)[-1] , 
@@ -284,7 +284,7 @@ EmbedDimension <- function (
 							pathIn       = "./",
 							dataFile     = "",
 							dataFrame    = NULL,
-							pathOut      = "./",
+							pathOut      = "",
 							predictFile  = "",
 							lib          = "",
 							pred         = "",

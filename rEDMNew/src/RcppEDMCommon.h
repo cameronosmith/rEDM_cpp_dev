@@ -147,6 +147,4 @@ r::List SMap_rcpp(   std::string pathIn,
 					   bool        verbose );
 
 
-
-
 #endif

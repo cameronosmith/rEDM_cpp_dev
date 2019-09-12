@@ -1,63 +1,86 @@
-if ( FALSE ) {
+# run first block if just running code in this dir 
+if ( 0 ) {
     source("EDM.R")
-    source("ExportData.R")
+    source("LoadData.R")
 } else {
     source("R/EDM.R")
-    source("R/ExportData.R")
+    source("R/LoadData.R")
 }
 #------------------------------------------------------------------------
 # 
 #------------------------------------------------------------------------
 Examples <- function() {
 
-	#run embed dimension demo
-	cat( paste('\nEmbedDimension( "./", TentMap_rEDM.csv", NULL, "", "",' ,
-           '"1 100", "201 500", 1, 1, "TentMap", "", FALSE, FALSE, 4 )\n' ))
-    df <- EmbedDimension( "", "", TentMap, "", "",
-					"1 100", "201 500", 1, 1,
-					"TentMap", "", FALSE, FALSE, 4, TRUE )
-	#run predict interval demo
-	cat( paste('\nPredictInterval( "./", TentMap_rEDM.csv", NULL, "./", "",' ,
-           '"1 100", "201 500", 2, 1, "TentMap", "", FALSE, FALSE, 4 )\n' ))
-    df <- PredictInterval( "", "", TentMap, "./", "",
-					"1 100", "201 500", 2, 1,
-					"TentMap", "", FALSE, FALSE, 4 )
-	#run predict nonlinear demo
-	cat( paste('\nPredictNonlinear("./","TentMapNoise_rEDM.csv",NULL,"./","",',
-           '"1 100", "201 500", 2, 1, 1, "TentMap", "", FALSE, FALSE, 4 )\n' ))
-    df <- PredictNonlinear( "", "", TentMapNoise, "./", "",
-					"1 100", "201 500", 2, 1, 1,
-					"TentMap", "", FALSE, FALSE, 4 )
-	#run simplex demo, already embedded
-	cat( paste('\nSimplex( "./", block_3sp.csv", NULL, "./", "",' ,
-           '"1 99", "101 195", 3, 1, 0, 1, "x_t y_t z_t", "x_t", FALSE, TRUE, TRUE )\n' ))
-    df <- Simplex	("", "", block_3sp, "./", "",
-				"1 99", "101 195", 3, 1, 0, 1,
-				"x_t y_t z_t", "x_t", TRUE, TRUE, FALSE, TRUE )
-	#run simplex demo, not pre embedded
-	cat( paste('\nSimplex( "./", block_3sp.csv", NULL, "./", "",' ,
-           '"1 99", "100 195", 3, 1, 0, 1, "x_t", "x_t", TRUE, FALSE, TRUE )\n' ))
-    df <- Simplex	("", "", block_3sp, "./", "",
-				"1 99", "101 195", 3, 1, 0, 1,
-				"x_t", "x_t", FALSE, TRUE, FALSE, TRUE )
-	#run multiview demo
-	cat( paste('\nMultiview( "./", block_3sp.csv", NULL, "./", "",' ,
-		   '"1 100", "100 195", 3, 1, 0, 1, "x_t y_t z_t", "x_t", 0, FALSE, 4, TRUE )\n' ))
-    df <- Multiview	("", "", block_3sp, "./", "",
-				"1 100", "101 195", 3, 1, 0, 1,
-				"x_t y_t z_t", "x_t", 0, FALSE, 4, TRUE )
-	#run smap demo
-	cat( paste('\nSMap( "./", circle.csv", NULL, "./", "",' ,
-		   '"1 100", "100 195", 2, 1, 0, 1, 4, "x y", "x", "","",TRUE, TRUE, TRUE )\n' ))
-	
-    df <- SMap("", "", circle, "./", "",
-				"1 100", "101 195", 2, 1, 0, 1, 4,
-				"x y ", "x", "","", TRUE, TRUE, TRUE, TRUE )
-	#run ccm demo
-    cat( ('\nCCM( "./", "sardine_anchovy_sst.csv", NULL, "./", "",
-           3, 0, 0, 1, "anchovy", "np_sst",
-           "10 80 10", 100, TRUE, 0, TRUE, TRUE )' ))
-    df <- CCM( "", "",sardine_anchovy_sst, "./", "", 
-              3, 0, 0, 1, "anchovy", "np_sst",
-              "10 80 10", 100, TRUE, 0, TRUE, TRUE )
+    # make sure the data exists before we use it 
+
+    sampleDataNames =
+        c("TentMap","TentMapNoise","circle","block_3sp", "sardine_anchovy_sst")
+
+    for ( dataName in sampleDataNames ) {
+        if (!(dataName %in% names( sampleData ) )) {
+            stop( paste0("Examples(): Failed to find sample data " ,
+                  dataName , " in EDM package" ) )
+        }
+    }
+    
+    # run embed dimension demo
+
+    cmd = paste0('EmbedDimension( dataFrame=sampleData["TentMap"][[1]],',
+                       ' lib="1 100", pred="201 500",',
+                       ' columns="TentMap", target="TentMap")' )
+    df = eval(parse(text=cmd))
+
+
+    # run predict interval demo
+
+    cmd = paste0('PredictInterval( dataFrame=sampleData["TentMap"][[1]],',
+                       ' lib="1 100", pred="201 500",',
+                       ' columns="TentMap", target="TentMap") ')
+    df = eval(parse(text=cmd))
+    # run predict nonlinear demo
+
+    cmd = paste0('PredictNonlinear( dataFrame=sampleData["TentMapNoise"][[1]],',
+                      ' E=2,lib="1 100", pred="201 500", ',
+                      ' columns="TentMap",target="TentMap") ')
+    df = eval(parse(text=cmd))
+
+    # tent map simplex : specify multivariable columns embedded = TRUE
+
+    cmd = paste0('Simplex( dataFrame=sampleData["block_3sp"][[1]],',
+                      ' lib="1 99", pred="100 195", ',
+                      ' E=3, embedded=TRUE, showPlot=TRUE, const_pred=TRUE,',
+                      ' columns="x_t y_t z_t", target="x_t") ')
+    df = eval(parse(text=cmd))
+
+    # Tent map simplex : Embed column x_t to E=3, embedded = False
+
+    cmd = paste0('Simplex( dataFrame=sampleData["block_3sp"][[1]],',
+                      ' lib="1 99", pred="105 190", ',
+                      ' E=3, showPlot=TRUE, const_pred=TRUE,',
+                      ' columns="x_t", target="x_t") ')
+    df = eval(parse(text=cmd))
+
+    # multiview demo
+
+    cmd = paste0('Multiview( dataFrame=sampleData["block_3sp"][[1]],',
+                      ' lib="1 99", pred="105 190", ',
+                      ' E=3, columns="x_t y_t z_t", target="x_t",',
+                      ' showPlot=TRUE) ')
+    df = eval(parse(text=cmd))
+
+    # SMap circle : specify multivariable columns embedded = TRUE
+
+    cmd = paste0('SMap( dataFrame=sampleData["circle"][[1]],',
+                      ' lib="1 100", pred="110 190", theta=4, E=2,',
+                      'verbose=TRUE, showPlot=TRUE, embedded=TRUE,',
+                      ' columns="x y", target="x") ')
+    df = eval(parse(text=cmd))
+    
+    # CCM demo
+
+    cmd = paste0('CCM( dataFrame=sampleData["sardine_anchovy_sst"][[1]],',
+                      ' E=3, Tp=0, columns="anchovy", target="np_sst",',
+                      ' libSizes="10 80 10", sample=100, verbose=TRUE, ',
+                      ' showPlot=TRUE) ')
+    df = eval(parse(text=cmd))
 }
