@@ -18,10 +18,12 @@ r::DataFrame CCM_rcpp( std::string pathIn,
 						 std::string libSizes,
 						 int         sample,
 						 bool        random,
+						 bool        replacement,
 						 unsigned    seed, 
 						 bool        verbose ) {
     
     DataFrame< double > ccmOutput;
+
 
     if ( dataFile.size() ) {
         // dataFile specified, dispatch overloaded CCM, ignore dataList
@@ -39,6 +41,7 @@ r::DataFrame CCM_rcpp( std::string pathIn,
                          libSizes,
                          sample,
                          random,
+                         replacement,
                          seed,
                          verbose );
     }
@@ -57,6 +60,7 @@ r::DataFrame CCM_rcpp( std::string pathIn,
                          libSizes,
                          sample,
                          random,
+                         replacement,
                          seed,
                          verbose );
     }

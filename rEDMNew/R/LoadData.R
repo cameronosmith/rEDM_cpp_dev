@@ -1,7 +1,8 @@
 #file to export the csv's by reading them in here
 
 # run first block if just running code in this dir 
-prefix          <- if( 0 ) "../data/" else "data/"
+dev <- file.exists("Aux.R")
+prefix          <- if( dev ) "../data/" else "data/"
 
 sampleData      <- list()
 

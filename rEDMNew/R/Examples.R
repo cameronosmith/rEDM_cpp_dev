@@ -1,5 +1,6 @@
 # run first block if just running code in this dir 
-if ( 0 ) {
+dev <- file.exists("Aux.R")
+if ( dev ) {
     source("EDM.R")
     source("LoadData.R")
 } else {
@@ -80,7 +81,8 @@ Examples <- function() {
 
     cmd = paste0('CCM( dataFrame=sampleData["sardine_anchovy_sst"][[1]],',
                       ' E=3, Tp=0, columns="anchovy", target="np_sst",',
-                      ' libSizes="10 80 10", sample=100, verbose=TRUE, ',
+                      ' libSizes="10 70 10", sample=100, verbose=TRUE, ',
                       ' showPlot=TRUE) ')
     df = eval(parse(text=cmd))
 }
+if ( dev ) Examples()

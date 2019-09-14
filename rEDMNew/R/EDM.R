@@ -1,7 +1,8 @@
 #wrapping the wrapped edm functions 
 
 # run first block if just running code in this dir 
-if ( 0 ) {
+dev <- file.exists("Aux.R")
+if ( dev ) {
     source("Aux.R")
     library(rEDMNew)
 } else {
@@ -240,14 +241,15 @@ CCM <- function (
 				 libSizes     = "",
 				 sample       = 0,
 				 random       = TRUE,
+				 replacement  = FALSE,
 				 seed         = 0,
 				 verbose      = FALSE,
 				 showPlot     = FALSE ) {
     #Convergent Cross Mapping on path/file.
 
     # Establish DF as empty list or Pandas DataFrame for CCM()
-	dataFrame <- isValidDF( dataFile, dataFrame, "CCM" )
-	columns <- checkCols( dataFrame, columns )
+	dataFrame   <- isValidDF( dataFile, dataFrame, "CCM" )
+	columns     <- checkCols( dataFrame, columns )
     
     # D is a Python dict from pybind11 < cppEDM CCM
     df <- INTERNAL_CCM( pathIn,
@@ -264,6 +266,7 @@ CCM <- function (
                         libSizes,
                         sample,
                         random,
+                        replacement,
                         seed,
                         verbose )
 

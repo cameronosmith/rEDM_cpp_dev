@@ -90,6 +90,7 @@ auto CCMArgs = r::List::create(
                r::_["libSizes"]    = std::string(""),
                r::_["sample"]      = 0,
                r::_["random"]      = true,
+               r::_["replacement"] = false,
                r::_["seed"]        = 0,
                r::_["verbose"]     = false );
     

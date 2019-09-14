@@ -106,6 +106,7 @@ r::DataFrame CCM_rcpp( std::string pathIn,
 		std::string libSizes,
 		int         sample,
 		bool        random,
+		bool        replacement,
 		unsigned    seed, 
 		bool        verbose );
 r::DataFrame Simplex_rcpp(std::string pathIn,

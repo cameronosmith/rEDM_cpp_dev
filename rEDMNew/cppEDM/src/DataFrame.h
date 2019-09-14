@@ -46,7 +46,6 @@ class DataFrame {
     std::vector< std::string >      columnNames;
     std::map< std::string, size_t > columnNameToIndex;
 
-public:
     std::vector< std::string > time;
     std::string                timeName;
     
@@ -54,6 +53,7 @@ public:
     bool   partialDataRowsDeleted;
     size_t maxRowPrint;
     
+public:
     //-----------------------------------------------------------------
     // Destructor
     //-----------------------------------------------------------------
