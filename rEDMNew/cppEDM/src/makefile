@@ -5,7 +5,7 @@ OBJ = Common.o AuxFunc.o DateTimeUtil.o Parameter.o Embed.o Interface.o\
 
 LIB = libEDM.a
 
-CFLAGS = -fPIC -std=c++11 -DCCM_THREADED -DMULTIVIEW_VALUES_OVERLOAD -O3 # -g -DDEBUG -DDEBUG_ALL
+CFLAGS = -I./ -fPIC -std=c++11 -DCCM_THREADED -DMULTIVIEW_VALUES_OVERLOAD -O3 # -g -DDEBUG -DDEBUG_ALL
 LFLAGS = -L./ -lstdc++ -lEDM -lpthread # -llapacke -llapack -lblas 
 
 all:	$(LIB)
@@ -54,7 +54,7 @@ Multiview.o: Multiview.cc
 	$(CC) -c Multiview.cc $(CFLAGS)
 
 SMap.o: SMap.cc
-	$(CC) -c SMap.cc $(CFLAGS)
+	$(CC) -c SMap.cc $(CFLAGS) -I./
 
 SRCS = `echo ${OBJ} | sed -e 's/.o /.cc /g'`
 depend:
