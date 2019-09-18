@@ -3,7 +3,6 @@ vmImage: 'macos-10.13'
 build_name: 'MacOS_3.7.4_EDM'
 python.version: '3.7.4'
 
-#download eigen for cppEDM
 - script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
 - script: mv eigen_git/Eigen rEDMNew/cppEDM/src
 
