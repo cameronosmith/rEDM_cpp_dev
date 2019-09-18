@@ -1,3 +1,6 @@
 PKG_CPPFLAGS = -I ../cppEDM/src/
-PKG_LIBS = -L ../cppEDM/lib/ -lEDM
+PKG_LIBS     = -L ../cppEDM/lib/ -lEDM
 
+all:
+	make -C ../cppEDM/src
+    

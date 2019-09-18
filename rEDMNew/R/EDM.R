@@ -1,12 +1,12 @@
 #wrapping the wrapped edm functions 
 
 # run first block if just running code in this dir 
-dev <- file.exists("Aux.R")
+dev <- file.exists("EDM_AuxFuncs.R")
 if ( dev ) {
-    source("Aux.R")
+    source("EDM_AuxFuncs.R")
     library(rEDMNew)
 } else {
-    source("R/Aux.R")
+    source("R/EDM_AuxFuncs.R")
 }
 
 #------------------------------------------------------------------------

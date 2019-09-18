@@ -11,7 +11,7 @@ DataFrame< double > DFToDataFrame ( Rcpp::DataFrame df ) {
 	// ensure that we have > 1 columns for reading since starting after time col
 
     if ( df.ncol() == 1 ) {
-        std::string err  ="Input data must have > 1 column, as first column \n"
+        std::string err  ="Input data must have > 1 column, as first column "
                             "is interpreted as a time column.\n";
         throw std::runtime_error( err );
     }
