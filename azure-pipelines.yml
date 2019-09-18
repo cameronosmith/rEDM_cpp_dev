@@ -1,15 +1,15 @@
+strategy:
+    - script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
+    - script: mv eigen_git/Eigen rEDMNew/cppEDM/src
 
-- script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
-- script: mv eigen_git/Eigen rEDMNew/cppEDM/src
+    #build cppEDM with respective makefile
+    - script: make -C cppEDM/src
+    condition: eq( variables['Agent.OS'], 'Darwin' )
+    displayName: building cppEDM on macOS
 
-#build cppEDM with respective makefile
-- script: make -C cppEDM/src
-  condition: eq( variables['Agent.OS'], 'Darwin' )
-  displayName: building cppEDM on macOS
-
-- task: UsePythonVersion@0
-  inputs:
+    - task: UsePythonVersion@0
+    inputs:
     versionSpec: '$(python.version)'
 
-#build the package and download
-- script: make
+    #build the package and download
+    - script: make
