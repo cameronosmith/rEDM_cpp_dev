@@ -1,0 +1,28 @@
+
+strategy:
+  matrix:
+    MacOS_3.7.4:
+      vmImage: 'macos-10.13'
+      build_name: 'MacOS_3.7.4_EDM'
+      python.version: '3.7.4'
+
+pool:
+  vmImage: $(vmImage)
+  python.version: $(python.version)
+
+#download eigen for cppEDM
+- script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
+  displayName: download eigen
+- script: mv eigen_git/Eigen rEDMNew/cppEDM/src
+
+#build cppEDM with respective makefile
+- script: make -C cppEDM/src
+  condition: eq( variables['Agent.OS'], 'Darwin' )
+  displayName: building cppEDM on macOS
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+
+#build the package and download
+- script: make
