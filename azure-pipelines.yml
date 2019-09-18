@@ -2,6 +2,6 @@ steps:
 - script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
 - script: mv eigen_git/Eigen rEDMNew/cppEDM/src
 #build cppEDM with respective makefile
-- script: make -C cppEDM/src
+- script: make -C rEDMNew/cppEDM/src
 #build the package and download
 - script: make
