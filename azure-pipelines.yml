@@ -1,3 +1,5 @@
+container: 'rocker/r-ver:3.6.0'  
+
 steps:
 - bash: Rscript -e 'R.version'
 - script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
