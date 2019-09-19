@@ -2,9 +2,8 @@ container: 'rocker/r-ver:3.6.0'
 
 steps:
 - bash: Rscript -e 'R.version'
-#- script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
-#- script: mv eigen_git/Eigen rEDMNew/cppEDM/src
 #build cppEDM with respective makefile
 - script: make -C rEDMNew/cppEDM/src
 #build the package and download
-- script: make
+- script: make build
+- script: make check
