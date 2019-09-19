@@ -3,6 +3,7 @@ container: 'rocker/r-ver:3.6.0'
 steps:
 - bash: Rscript -e 'R.version'
 - bash: Rscript -e "install.packages('Rcpp',dependencies=TRUE, lib=\"./\", repos='http://cran.rstudio.com/')"
+- bash: Rscript -e "install.packages('devtools',dependencies=TRUE, lib=\"./\", repos='http://cran.rstudio.com/')"
 #build cppEDM with respective makefile
 - script: make -C rEDMNew/cppEDM/src
 #build the package and download
