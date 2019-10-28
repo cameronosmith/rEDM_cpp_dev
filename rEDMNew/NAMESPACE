@@ -1,4 +1,0 @@
-useDynLib(rEDMNew, .registration=TRUE)
-exportPattern("^[[:alpha:]]+")
-exportPattern("^[^\\.]")
-import(methods, Rcpp)
