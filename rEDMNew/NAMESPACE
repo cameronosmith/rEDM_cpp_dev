@@ -1,0 +1,20 @@
+useDynLib(rEDMNew, .registration=TRUE)
+
+export(Simplex)
+export(SMap)
+export(CCM)
+export(Multiview)
+export(Embed)
+export(MakeBlock)
+export(ComputeError)
+export(EmbedDimension)
+export(PredictInterval)
+export(PredictNonlinear)
+
+importFrom("graphics", "abline", "legend", "lines", "mtext", "par",
+           "plot")
+
+importFrom("utils", "data", "read.csv")
+
+import(methods)
+import(Rcpp)

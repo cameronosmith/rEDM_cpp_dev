@@ -1,0 +1,9 @@
+^tests
+^cppEDM/data
+^cppEDM/doc
+^cppEDM/etc
+^cppEDM/LICENSE
+^cppEDM/README.md
+^cppEDM/tests
+^.*\.o
+^.*\.a

@@ -1,0 +1,26 @@
+Package: rEDMNew
+Type:    Package
+Title:   Empirical Dynamic Modeling (EDM)
+Version: 0.8.0
+Date:    2019-10-31
+Authors@R: c(person("Joseph", "Park", role = c("aut", "cre"),
+                    email = "JosephPark@IEEE.org",
+                    comment = "ORCID:0000-0001-5411-1409" ),
+             person("Cameron", "Smith", role = c("aut"),
+                    email = "cos008@ucsd.edu",
+                    comment = "" ),
+             person("Ethan", "Deyle", role = c("aut"),
+                    comment = "ORCID:0000-0001-8704-8434"),
+             person("Erik", "Saberski", role = c("ctb"),
+                    comment = "ORCID:0000-0002-6475-6187"),
+             person("George", "Sugihara", role = c("aut", "ccp"), 
+                    comment = "ORCID:0000-0002-2863-6946") )
+Maintainer: JosephPark <JosephPark@IEEE.org> Cameron Smith <cos008@ucsd.edu>
+Description: R interface to [cppEDM](https://github.com/SugiharaLab/cppEDM) library for [EDM](http://deepeco.ucsd.edu/nonlinear-dynamics-research/edm/).
+License: file LICENSE
+LazyData: true
+LazyLoad: yes
+Imports: methods, Rcpp (>= 1.0.1)
+LinkingTo: Rcpp
+#Suggests: knitr, rmarkdown, R.rsp, testthat, formatR, tibble, digest, pkgdown
+#VignetteBuilder: knitr, R.rsp
