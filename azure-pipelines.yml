@@ -4,29 +4,8 @@ pool:
 
 steps:
 #only setup the visual studio environment if on windowz
-- script: |
-  curl -fLo /tmp/R.pkg "$(CRAN)/bin/macosx/R-latest.pkg"
-  sudo installer -pkg "/tmp/R.pkg" -target /
-  rm /tmp/R.pkg
-  displayName: 'Installing R'
-
-#download eigen for cppEDM
-- script: git clone https://github.com/eigenteam/eigen-git-mirror eigen_git
-  displayName: download eigen
-- script: mv eigen_git/Eigen .
-
-#print which version python using for testing
-- script: python --version
-
-#build cppEDM with respective makefile
-- script: make -C cppEDM/src -f makefile.windows
-  condition: eq( variables['Agent.OS'], 'Windows_NT' )
-  displayName: building cppEDM on windows
-- script: make -C cppEDM/src
-  condition: eq( variables['Agent.OS'], 'Darwin' )
-  displayName: building cppEDM on macOS
-
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-
+  - script: |
+      curl -fLo /tmp/R.pkg "$(CRAN)/bin/macosx/R-latest.pkg"
+      sudo installer -pkg "/tmp/R.pkg" -target /
+      rm /tmp/R.pkg
+    displayName: 'Installing R'
