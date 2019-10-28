@@ -1,5 +1,6 @@
 
-vmImage: 'macos-10.13'
+matrix:
+  vmImage: 'macos-10.13'
 
 steps:
 #only setup the visual studio environment if on windowz
