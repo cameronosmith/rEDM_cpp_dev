@@ -16,6 +16,8 @@ steps:
   - script: R CMD build rEDMNew 
     displayName: 'building project'
 
-
   - script: R CMD INSTALL rEDMNew_*
     displayName: 'installing project'
+
+  - script: R CMD check rEDMNew 
+    displayName: 'checking project'
