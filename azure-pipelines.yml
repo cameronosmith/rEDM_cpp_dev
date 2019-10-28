@@ -10,6 +10,9 @@ steps:
       rm /tmp/R.pkg
     displayName: 'Installing R'
 
+  - script: R -e "install.packages('Rcpp', repos='https://cran.rstudio.com')"
+    displayName: 'installing Rcpp requirement'
+
   - script: R CMD build rEDMNew 
     displayName: 'building project'
 
